@@ -1,29 +1,16 @@
-<!-- <div class='container'>
-    <div class="row">
-        <app-breadcrumbs></app-breadcrumbs>
-    </div>
-    <div class="row">
-            <h1 style=" font-family: 'Oakes-Light'; font-size: 3.2rem; flex-basis: 100%; margin: 5rem 0 5rem 0; text-align: center;"
-            *ngIf="searchResult">
-            We found
-            <a>{{searchResult.totalCount}}</a> listing for you.
-        </h1>
-    </div>
-</div>
-<app-breadcrumbs></app-breadcrumbs>
+<!--<app-breadcrumbs></app-breadcrumbs>
 <app-pagination></app-pagination>
 <div class='container'>
     <div class="row">
-        <h1 style=" font-family: 'Oakes-Light'; font-size: 3.2rem; flex-basis: 100%; margin: 5rem 0 5rem 0; text-align: center;"
+            <h1 style=" font-family: 'Oakes-Light'; font-size: 3.2rem; flex-basis: 100%; margin: 5rem 0 5rem 0; text-align: center;"
             *ngIf="searchResult">
-            We found
-            <a>{{searchResult.totalCount}}</a> listing for you.
+            We found <a>{{searchResult.totalCount}}</a> listing for you.
         </h1>
-
+        
         <div className="styles.csv" onClick={this.downloadCSV(properties)}>
             <p>Download Results</p>
         </div>
-
+        
         <div *ngIf="isGridView()">
             <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-grid.svg">&nbsp;
             <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin.svg" (click)="loadView('map')" style="cursor: pointer">
@@ -33,81 +20,81 @@
             <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin-1.svg">
         </div>
     </div>
+<div class="row">
+    <div style="float:right">Sort by: </div>
+    <div style="float:left">Icons</div>
+</div>
+<div class="row" *ngIf="isGridView() && searchResult">
+    <div class="col-sm-6 col-md-3" *ngFor="let listing of searchResult.listings">
+        <app-listing-card [listing]="listing" ></app-listing-card>
+    </div>
+</div>
+
+<div class="row" [hidden]="!isMapView()" >
+    <div class="col-sm-4 col-md-4" *ngIf="searchResult">
+        <div *ngFor="let listing of searchResult.listings">
+            <app-listing-card [listing]="listing" ></app-listing-card>
+        </div>
+    </div>  
+    <div class="col-sm-8 col-md-8" *ngIf="searchResult">
+        <app-map [searchResult]="searchResult"></app-map> 
+</div>
+</div>
+<app-pagination-bottom></app-pagination-bottom>-->
+
+<div class="container">
     <div class="row">
-        <div style="float:right">Sort by: </div>
-        <div style="float:left">Icons</div>
+        <app-breadcrumbs></app-breadcrumbs>
     </div>
-    <div class="row" *ngIf="isGridView() && searchResult">
-        <div class="col-sm-6 col-md-3" *ngFor="let listing of searchResult.listings">
-            <app-listing-card [listing]="listing"></app-listing-card>
-        </div>
-    </div>
-
-    <div class="row" [hidden]="!isMapView()">
-        <div class="col-sm-4 col-md-4" *ngIf="searchResult">
-            <div *ngFor="let listing of searchResult.listings">
-                <app-listing-card [listing]="listing"></app-listing-card>
-            </div>
-        </div>
-        <div class="col-sm-8 col-md-8" *ngIf="searchResult">
-            <app-map [searchResult]="searchResult"></app-map>
-        </div>
-    </div>
-    <app-pagination-bottom></app-pagination-bottom> -->
-
-    <div class="container">
-        <div class="row">
-            <app-breadcrumbs></app-breadcrumbs>
-        </div>
-        <div class="row filterbar">
-            <div class="col-sm-4">
-                <div class="row">
-                    <div class="col-sm-4 show-cls">
-                        <label for="noOfListings" class="col-form-label">Show</label>
-                        <select id="noOfListings" class="form-control">
-                            <option selected>24</option>
-                            <option>48</option>
-                            <option>72</option>
+    <div class="row filterbar">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-4 show-cls">
+                    <label for="noOfListings" class="col-form-label">Show</label>
+                    <select id="noOfListings" class="form-control" #selectElem (change)="setPageSize(selectElem.value)">
+                           <option *ngFor="let page of lPageSizes" [value]="page.id">
+                             {{page.Value}}
+                            </option>
                         </select>
-                    </div>
-                    <div class="col-sm-4 searchresultlabel">
-                        <h6 *ngIf="searchResult">
-                            of {{searchResult.totalCount}} listings
-                        </h6>
-                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <!-- <pagination [totalItems]="12" (pageChanged)="pageChanged($event)"></pagination> -->
-            </div>
-            <div class="col-sm-4">
-                <div class="viewby" *ngIf="isGridView()">
-                    <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-grid.svg">&nbsp;
-                    <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin.svg" (click)="loadView('map')" style="cursor: pointer">
-                </div>
-                <div class="viewby" *ngIf="isMapView()">
-                    <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-grid-1.svg" (click)="loadView('grid')" style="cursor: pointer">&nbsp;
-                    <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin-1.svg">
+                <div class="col-sm-4 searchresultlabel">
+                    <h6 *ngIf="searchResult">
+                        of {{searchResult.totalCount}} listings
+                    </h6>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="row" [hidden]="!isMapView()">
-                    <div class="col-sm-4 col-md-4" *ngIf="searchResult">
-                        <div *ngFor="let listing of searchResult.listings">
-                            <app-listing-card [listing]="listing"></app-listing-card>
-                        </div>
-                    </div>
-                    <div class="col-sm-8 col-md-8" *ngIf="searchResult">
-                        <app-map [searchResult]="searchResult"></app-map>
-                    </div>
-                </div>
-                <div class="row" *ngIf="isGridView() && searchResult">
-                    <div class="col-sm-6 col-md-3" *ngFor="let listing of searchResult.listings">
+        <div class="col-sm-4">
+            <pagination [totalItems]="searchResult?.listings.length" [itemsPerPage]="curPageSize.Value" previousText="&lsaquo;" nextText="..." firstText="..." lastText="&raquo;" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+        <div class="col-sm-4">
+            <div class="viewby" *ngIf="isGridView()">
+                <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-grid.svg">&nbsp;
+                <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin.svg" (click)="loadView('map')" style="cursor: pointer">
+            </div>
+            <div class="viewby" *ngIf="isMapView()">
+                <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-grid-1.svg" (click)="loadView('grid')" style="cursor: pointer">&nbsp;
+                <img src="https://hm-wordpress.s3.amazonaws.com/uploads/2017/03/ic-checkin-1.svg">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row" [hidden]="!isMapView()">
+                <div class="col-sm-4 col-md-4" *ngIf="searchResult">
+                    <div *ngFor="let listing of searchResult.listings">
                         <app-listing-card [listing]="listing"></app-listing-card>
                     </div>
                 </div>
+                <div class="col-sm-8 col-md-8" *ngIf="searchResult">
+                    <app-map [searchResult]="searchResult"></app-map>
+                </div>
+            </div>
+            <div class="row" *ngIf="isGridView() && searchResult">
+                <div class="col-sm-6 col-md-3" *ngFor="let listing of returnedArray">
+                    <app-listing-card [listing]="listing"></app-listing-card>
+                </div>
             </div>
         </div>
     </div>
+</div>
