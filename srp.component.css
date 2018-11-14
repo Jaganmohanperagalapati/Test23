@@ -1,0 +1,97 @@
+
+.image_gallery__container{
+  display: flex;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+@media screen and (min-width: 960px) {
+  .image_gallery__container{
+      justify-content: flex-start;
+  }   
+}
+
+.image-item{
+  flex-direction: row;
+  margin: 10px;
+  flex: 1 1 160px;
+}
+
+
+
+.view {
+  background: #629beb;
+  color: white;
+  font-size: 2rem;
+  padding: 2rem;
+  max-width: 20rem;
+  margin: 0 auto;
+  text-align: center;
+}
+      .view:active {
+          position: relative;
+          top: 0.5rem;
+      }
+  .view:hover {
+      background: darken(#629beb, 10%);
+      cursor: pointer;
+  }
+.auctionTitle {
+  margin: 1.75rem 0 1rem 0;
+}
+
+.description {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #969696;
+  line-height: 1.43;
+}
+
+.active {
+  color: #3675cc;
+  font-family: 'Oakes-Bold';
+}
+
+.pagination {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  max-width: 30rem;
+  margin: 5rem auto;
+}
+
+.csv {
+  border-radius: 5px;
+  background-color: #d4d4d4;
+  width: 168.2px;
+  height: 27px;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  
+}
+      .csv:hover {
+        cursor: pointer;
+      }
+.thumbnail>img{
+   height: 150px; 
+}
+
+
+.viewby{
+float: right;
+}
+
+.show-cls{
+display: flex;
+padding:0px;
+}
+.searchresultlabel{
+padding: 10px 0px 0px 5px;
+}
+.filterbar{
+padding:10px 0px;
+}
+
+.show-cls .form-control{
+margin-left: 5px;
+}
