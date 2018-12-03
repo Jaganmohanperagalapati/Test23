@@ -18,3 +18,9 @@ import { PaginationModule } from 'ngx-bootstrap';
           <div> of {{searchResult?.data.length}} listings</div>
         </div>
       </div>
+(getMoreListings)="getMoreListings($event)"
+          
+    async getMoreListings(event) {
+        console.log('more is called',event)
+        //this.searchResult = await this._api.getEndPoint<ISearchResult>("http://listingsvc-s1-v1.dev.exostechnology.local/api/v1/listings?propertyType=Mobile&limit=50");
+    }
